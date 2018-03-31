@@ -5,9 +5,10 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"server/apis"
-	"server/daos"
-	"server/services"
+
+	"github.com/spellslot/server/apis"
+	"github.com/spellslot/server/daos"
+	"github.com/spellslot/server/services"
 
 	"github.com/alexsasharegan/dotenv"
 	"github.com/gorilla/mux"
