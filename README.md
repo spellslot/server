@@ -1,5 +1,7 @@
 # D&D 5e Spells Server
 
+[![Build Status](https://travis-ci.org/spellslot/server.svg?branch=master)](https://travis-ci.org/spellslot/server)
+
 This is the spells server written in Go.
 
 ## Project Structure
