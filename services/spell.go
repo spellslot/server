@@ -2,8 +2,9 @@ package services
 
 import (
 	"net/url"
-	"server/daos"
-	"server/models"
+
+	"github.com/spellslot/server/daos"
+	"github.com/spellslot/server/models"
 )
 
 type (

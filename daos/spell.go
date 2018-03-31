@@ -6,7 +6,8 @@ import (
 	"log"
 	"net/url"
 	"os"
-	"server/models"
+
+	"github.com/spellslot/server/models"
 
 	// need unnamed to use the postgres driver
 	_ "github.com/lib/pq"

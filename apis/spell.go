@@ -3,7 +3,8 @@ package apis
 import (
 	"encoding/json"
 	"net/http"
-	"server/services"
+
+	"github.com/spellslot/server/services"
 
 	"github.com/gorilla/mux"
 )

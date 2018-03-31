@@ -3,10 +3,11 @@ package apis
 import (
 	"net/http"
 	"net/http/httptest"
-	"server/daos"
-	"server/services"
-	"server/util"
 	"testing"
+
+	"github.com/spellslot/server/daos"
+	"github.com/spellslot/server/services"
+	"github.com/spellslot/server/util"
 
 	"github.com/gorilla/mux"
 )
