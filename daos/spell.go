@@ -56,10 +56,6 @@ func (dao *DBSpellDAO) Get(queryString url.Values) (*models.Spells, error) {
 		log.Fatal(err)
 	}
 
-	// TODO have to deal with different types even though queryString only holds slices of strings
-	// where := queryStringToWhereClause(queryString)
-	// rows, err := db.Query("SELECT * FROM spells " + where + ";")
-
 	rows, err := db.Query("SELECT * FROM spells;")
 
 	if err != nil {
