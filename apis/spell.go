@@ -25,7 +25,7 @@ func ServeSpellResource(router *httprouter.Router, service services.SpellService
 }
 
 func (s *spellResource) get(w http.ResponseWriter, r *http.Request) {
-	spells, _ := s.service.Get(r.URL.Query())
+	spells, _ := s.service.Get()
 	payload, _ := json.Marshal(spells)
 	sendResponse(w, "application/json", payload)
 }

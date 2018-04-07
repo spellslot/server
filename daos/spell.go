@@ -4,7 +4,6 @@ import (
 	"database/sql"
 	"errors"
 	"log"
-	"net/url"
 	"os"
 
 	"github.com/spellslot/server/models"
@@ -19,7 +18,7 @@ type (
 
 	// SpellDAO describes a spell dao
 	SpellDAO interface {
-		Get(queryString url.Values) (*models.Spells, error)
+		Get() (*models.Spells, error)
 	}
 
 	// DBSpellDAO persists spell data in database
@@ -48,7 +47,7 @@ func NewSpellDAO(version SpellDAOVersion) (SpellDAO, error) {
 }
 
 // Get for DBSpellDAO
-func (dao *DBSpellDAO) Get(queryString url.Values) (*models.Spells, error) {
+func (dao *DBSpellDAO) Get() (*models.Spells, error) {
 	spells := models.Spells{}
 	db, err := sql.Open("postgres", os.Getenv("DATABASE_CONNECTION_STRING"))
 
@@ -80,6 +79,6 @@ func (dao *DBSpellDAO) Get(queryString url.Values) (*models.Spells, error) {
 }
 
 // Get for MockSpellDAO
-func (dao *MockSpellDAO) Get(queryString url.Values) (*models.Spells, error) {
+func (dao *MockSpellDAO) Get() (*models.Spells, error) {
 	return &models.Spells{}, nil
 }
