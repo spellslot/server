@@ -28,7 +28,7 @@ func main() {
 		router.Handler("GET", "/", fs)
 	}
 
-	spellDao, _ := daos.NewSpellDAO(daos.RealDB)
+	spellDao, _ := daos.NewSpellDAO()
 
 	apis.ServeSpellResource(router, services.NewSpellService(spellDao))
 

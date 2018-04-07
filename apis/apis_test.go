@@ -6,12 +6,13 @@ import (
 	"net/http/httptest"
 	"testing"
 
+	"github.com/spellslot/server/mocks"
+
 	"github.com/alexsasharegan/dotenv"
 	"github.com/julienschmidt/httprouter"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 	"github.com/spellslot/server/apis"
-	"github.com/spellslot/server/daos"
 	"github.com/spellslot/server/services"
 )
 
@@ -27,10 +28,9 @@ var _ = BeforeSuite(func() {
 	}
 })
 
-func executeRequest(req *http.Request, spellDaoVersion daos.SpellDAOVersion) *httptest.ResponseRecorder {
+func executeRequest(req *http.Request, spellDao *mocks.MockSpellDAO) *httptest.ResponseRecorder {
 	rr := httptest.NewRecorder()
 	router := httprouter.New()
-	spellDao, _ := daos.NewSpellDAO(spellDaoVersion)
 	apis.ServeSpellResource(router, services.NewSpellService(spellDao))
 	router.ServeHTTP(rr, req)
 

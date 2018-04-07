@@ -2,7 +2,6 @@ package daos
 
 import (
 	"database/sql"
-	"errors"
 	"log"
 	"os"
 
@@ -13,9 +12,6 @@ import (
 )
 
 type (
-	// SpellDAOVersion is an enum used when creating a new dao through the factory
-	SpellDAOVersion int
-
 	// SpellDAO describes a spell dao
 	SpellDAO interface {
 		Get() (*models.Spells, error)
@@ -23,27 +19,11 @@ type (
 
 	// DBSpellDAO persists spell data in database
 	DBSpellDAO struct{}
-
-	// MockSpellDAO mocks spell data
-	MockSpellDAO struct{}
-)
-
-const (
-	// RealDB describes a connection to a real DB
-	RealDB SpellDAOVersion = iota
-	// MockDB describes a connection to a mock DB
-	MockDB
 )
 
 // NewSpellDAO creates a new SpellDAO
-func NewSpellDAO(version SpellDAOVersion) (SpellDAO, error) {
-	switch version {
-	case RealDB:
-		return &DBSpellDAO{}, nil
-	case MockDB:
-		return &MockSpellDAO{}, nil
-	}
-	return nil, errors.New("DAO version not implemented")
+func NewSpellDAO() (SpellDAO, error) {
+	return &DBSpellDAO{}, nil
 }
 
 // Get for DBSpellDAO
@@ -76,9 +56,4 @@ func (dao *DBSpellDAO) Get() (*models.Spells, error) {
 	}
 
 	return &spells, nil
-}
-
-// Get for MockSpellDAO
-func (dao *MockSpellDAO) Get() (*models.Spells, error) {
-	return &models.Spells{}, nil
 }
