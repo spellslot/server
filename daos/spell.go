@@ -2,7 +2,6 @@ package daos
 
 import (
 	"database/sql"
-	"log"
 	"os"
 
 	"github.com/spellslot/server/models"
@@ -32,13 +31,13 @@ func (dao *DBSpellDAO) Get() (*models.Spells, error) {
 	db, err := sql.Open("postgres", os.Getenv("DATABASE_CONNECTION_STRING"))
 
 	if err != nil {
-		log.Fatal(err)
+		return &models.Spells{}, err
 	}
 
 	rows, err := db.Query("SELECT * FROM spells;")
 
 	if err != nil {
-		log.Fatal(err)
+		return &models.Spells{}, err
 	}
 
 	defer rows.Close()
@@ -46,13 +45,13 @@ func (dao *DBSpellDAO) Get() (*models.Spells, error) {
 	for rows.Next() {
 		var spell models.Spell
 		if err := rows.Scan(&spell.ID, &spell.Name, &spell.School, &spell.Level, &spell.Ritual, &spell.CastingTime, &spell.Source, &spell.Range, &spell.Classes, &spell.Components, &spell.Duration, &spell.AtHigherLevel, &spell.Concentration, &spell.Slug, &spell.Page, &spell.Description); err != nil {
-			log.Fatal(err)
+			return &models.Spells{}, err
 		}
 		spells = append(spells, spell)
 	}
 
 	if err := rows.Err(); err != nil {
-		log.Fatal(err)
+		return &models.Spells{}, err
 	}
 
 	return &spells, nil
