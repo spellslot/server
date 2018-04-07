@@ -1,32 +1,21 @@
-package apis
+package apis_test
 
 import (
 	"net/http"
-	"net/http/httptest"
-	"testing"
 
 	"github.com/spellslot/server/daos"
-	"github.com/spellslot/server/services"
-	"github.com/spellslot/server/util"
 
-	"github.com/gorilla/mux"
+	. "github.com/onsi/ginkgo"
+	. "github.com/onsi/gomega"
 )
 
-func executeRequest(req *http.Request, spellDaoVersion daos.SpellDAOVersion) *httptest.ResponseRecorder {
-	rr := httptest.NewRecorder()
-	router := mux.NewRouter().StrictSlash(true)
-	spellDao, _ := daos.NewSpellDAO(spellDaoVersion)
-	ServeSpellResource(router, services.NewSpellService(spellDao))
-	router.ServeHTTP(rr, req)
-
-	return rr
-}
-
-func TestSimpleMockGetSpells(t *testing.T) {
-	req, _ := http.NewRequest("GET", "/api/v1/spells", nil)
-	response := executeRequest(req, daos.MockDB)
-
-	util.CheckResponseCode(t, http.StatusOK, response.Code)
-
-	util.AssertEqual(t, response.Body.String(), "[]")
-}
+var _ = Describe("Spells APIs", func() {
+	Describe("Successful", func() {
+		It("Simple mock request should return an empty array", func() {
+			req, _ := http.NewRequest("GET", "/api/v1/spells", nil)
+			response := executeRequest(req, daos.MockDB)
+			Expect(response.Code).To(Equal(http.StatusOK))
+			Expect(response.Body.String()).To(Equal("[]"))
+		})
+	})
+})

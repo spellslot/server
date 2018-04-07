@@ -1,4 +1,4 @@
-package daos_test
+package services_test
 
 import (
 	"log"
@@ -9,9 +9,9 @@ import (
 	. "github.com/onsi/gomega"
 )
 
-func TestDaos(t *testing.T) {
+func TestServices(t *testing.T) {
 	RegisterFailHandler(Fail)
-	RunSpecs(t, "DAO Suite")
+	RunSpecs(t, "Service Suite")
 }
 
 var _ = BeforeSuite(func() {
