@@ -11,7 +11,7 @@ import (
 	"github.com/spellslot/server/services"
 
 	"github.com/alexsasharegan/dotenv"
-	"github.com/gorilla/mux"
+	"github.com/julienschmidt/httprouter"
 )
 
 func main() {
@@ -20,12 +20,12 @@ func main() {
 		log.Printf("Error loading .env file: %v", err)
 	}
 
-	router := mux.NewRouter().StrictSlash(true)
+	// router := mux.NewRouter().StrictSlash(true)
+	router := httprouter.New()
 
-	env := os.Getenv("APP_ENV")
-	if env == "production" {
+	if os.Getenv("APP_ENV") == "production" {
 		fs := http.FileServer(http.Dir("client/build"))
-		router.Handle("/", fs)
+		router.Handler("GET", "/", fs)
 	}
 
 	spellDao, _ := daos.NewSpellDAO(daos.RealDB)

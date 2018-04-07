@@ -7,7 +7,7 @@ import (
 	"testing"
 
 	"github.com/alexsasharegan/dotenv"
-	"github.com/gorilla/mux"
+	"github.com/julienschmidt/httprouter"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 	"github.com/spellslot/server/apis"
@@ -29,7 +29,7 @@ var _ = BeforeSuite(func() {
 
 func executeRequest(req *http.Request, spellDaoVersion daos.SpellDAOVersion) *httptest.ResponseRecorder {
 	rr := httptest.NewRecorder()
-	router := mux.NewRouter().StrictSlash(true)
+	router := httprouter.New()
 	spellDao, _ := daos.NewSpellDAO(spellDaoVersion)
 	apis.ServeSpellResource(router, services.NewSpellService(spellDao))
 	router.ServeHTTP(rr, req)

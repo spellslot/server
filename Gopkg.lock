@@ -20,6 +20,12 @@
   version = "v1.6.1"
 
 [[projects]]
+  name = "github.com/julienschmidt/httprouter"
+  packages = ["."]
+  revision = "8c199fb6259ffc1af525cc3ad52ee60ba8359669"
+  version = "v1.1"
+
+[[projects]]
   branch = "master"
   name = "github.com/lib/pq"
   packages = [
@@ -121,6 +127,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "8ce638ace223afbeb34c015b9c59c4f2bc7562bce71cf2de3a53b113d8c5c01c"
+  inputs-digest = "969ae6b0585f6e7f42fe513a54052faa37fa8a2267be60c15bc9800eb99eed70"
   solver-name = "gps-cdcl"
   solver-version = 1

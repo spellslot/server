@@ -4,9 +4,8 @@ import (
 	"encoding/json"
 	"net/http"
 
+	"github.com/julienschmidt/httprouter"
 	"github.com/spellslot/server/services"
-
-	"github.com/gorilla/mux"
 )
 
 type (
@@ -17,12 +16,12 @@ type (
 )
 
 // ServeSpellResource sets up routes for the spell service
-func ServeSpellResource(router *mux.Router, service services.SpellService) {
+func ServeSpellResource(router *httprouter.Router, service services.SpellService) {
 	r := &spellResource{service}
-	router.Methods("GET").Path("/api/v1/spells").Name("Get Spell").HandlerFunc(r.get)
-	router.Methods("POST").Path("/api/v1/spells").Name("Post Spell").HandlerFunc(r.post)
-	router.Methods("PUT").Path("/api/v1/spells").Name("Put Spell").HandlerFunc(r.put)
-	router.Methods("DELETE").Path("/api/v1/spells").Name("Delete Spell").HandlerFunc(r.delete)
+	router.Handler("GET", "/api/v1/spells", http.HandlerFunc(r.get))
+	router.Handler("POST", "/api/v1/spells", http.HandlerFunc(r.post))
+	router.Handler("PUT", "/api/v1/spells", http.HandlerFunc(r.put))
+	router.Handler("DELETE", "/api/v1/spells", http.HandlerFunc(r.delete))
 }
 
 func (s *spellResource) get(w http.ResponseWriter, r *http.Request) {
