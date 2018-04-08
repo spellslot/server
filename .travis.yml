@@ -14,4 +14,4 @@ before_script:
   - psql -d spells -U postgres -f db/create_spells_table.sql
 
 script:
- - $GOPATH/bin/goveralls -service=travis-ci
+ - $GOPATH/bin/goveralls -v -service=travis-ci
