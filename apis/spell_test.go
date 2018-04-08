@@ -25,13 +25,48 @@ var _ = Describe("Spells APIs", func() {
 		mockCtrl.Finish()
 	})
 
-	Describe("Successful", func() {
-		It("Simple mock request should return an empty array", func() {
-			mockSpellDao.EXPECT().Get().Return(&models.Spells{}, nil)
-			req, _ := http.NewRequest("GET", "/api/v1/spells", nil)
-			response := executeRequest(req, mockSpellDao)
-			Expect(response.Code).To(Equal(http.StatusOK))
-			Expect(response.Body.String()).To(Equal("[]"))
+	Describe("Get", func() {
+		Context("Successful", func() {
+			It("Simple mock request should return an empty array", func() {
+				mockSpellDao.EXPECT().Get().Return(&models.Spells{}, nil)
+				req, _ := http.NewRequest("GET", "/api/v1/spells", nil)
+				response := executeRequest(req, mockSpellDao)
+				Expect(response.Code).To(Equal(http.StatusOK))
+				Expect(response.Body.String()).To(Equal("[]"))
+			})
+		})
+	})
+
+	Describe("Post", func() {
+		Context("Successful", func() {
+			It("Not yet implemented", func() {
+				req, _ := http.NewRequest("POST", "/api/v1/spells", nil)
+				response := executeRequest(req, mockSpellDao)
+				Expect(response.Code).To(Equal(http.StatusOK))
+				Expect(response.Body.String()).To(Equal("Not yet implemented"))
+			})
+		})
+	})
+
+	Describe("Put", func() {
+		Context("Successful", func() {
+			It("Not yet implemented", func() {
+				req, _ := http.NewRequest("PUT", "/api/v1/spells", nil)
+				response := executeRequest(req, mockSpellDao)
+				Expect(response.Code).To(Equal(http.StatusOK))
+				Expect(response.Body.String()).To(Equal("Not yet implemented"))
+			})
+		})
+	})
+
+	Describe("Delete", func() {
+		Context("Successful", func() {
+			It("Not yet implemented", func() {
+				req, _ := http.NewRequest("DELETE", "/api/v1/spells", nil)
+				response := executeRequest(req, mockSpellDao)
+				Expect(response.Code).To(Equal(http.StatusOK))
+				Expect(response.Body.String()).To(Equal("Not yet implemented"))
+			})
 		})
 	})
 })
