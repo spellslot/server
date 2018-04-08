@@ -33,9 +33,16 @@ var _ = Describe("Spells DAO", func() {
 	})
 
 	Describe("Real DB", func() {
+		var (
+			spellDao daos.SpellDAO
+		)
+
+		BeforeEach(func() {
+			spellDao, _ = daos.NewSpellDAO()
+		})
+
 		It("Basic Get returns 408 rows", func() {
-			dao, _ := daos.NewSpellDAO()
-			res, _ := dao.Get()
+			res, _ := spellDao.Get()
 			Expect(len(*res)).To(Equal(408))
 		})
 	})
