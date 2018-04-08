@@ -1,6 +1,7 @@
 # D&D 5e Spells Server
 
 [![Build Status](https://travis-ci.org/spellslot/server.svg?branch=master)](https://travis-ci.org/spellslot/server)
+[![Coverage Status](https://coveralls.io/repos/github/spellslot/server/badge.svg?branch=master)](https://coveralls.io/github/spellslot/server?branch=master)
 
 This is the spells server written in Go.
 
