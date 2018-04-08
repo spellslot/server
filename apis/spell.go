@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/julienschmidt/httprouter"
+	"github.com/spellslot/server/app"
 	"github.com/spellslot/server/services"
 )
 
@@ -18,10 +19,10 @@ type (
 // ServeSpellResource sets up routes for the spell service
 func ServeSpellResource(router *httprouter.Router, service services.SpellService) {
 	r := &spellResource{service}
-	router.Handler("GET", "/api/v1/spells", http.HandlerFunc(r.get))
-	router.Handler("POST", "/api/v1/spells", http.HandlerFunc(r.post))
-	router.Handler("PUT", "/api/v1/spells", http.HandlerFunc(r.put))
-	router.Handler("DELETE", "/api/v1/spells", http.HandlerFunc(r.delete))
+	router.Handler("GET", "/api/v1/spells", app.Middleware(http.HandlerFunc(r.get)))
+	router.Handler("POST", "/api/v1/spells", app.Middleware(http.HandlerFunc(r.post)))
+	router.Handler("PUT", "/api/v1/spells", app.Middleware(http.HandlerFunc(r.put)))
+	router.Handler("DELETE", "/api/v1/spells", app.Middleware(http.HandlerFunc(r.delete)))
 }
 
 func (s *spellResource) get(w http.ResponseWriter, r *http.Request) {
