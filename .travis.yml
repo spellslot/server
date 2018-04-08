@@ -15,4 +15,3 @@ before_script:
 
 script:
  - $GOPATH/bin/goveralls -service=travis-ci
- 
