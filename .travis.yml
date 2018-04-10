@@ -14,4 +14,5 @@ before_script:
   - psql -d spells -U postgres -f db/create_spells_table.sql
 
 script:
- - $GOPATH/bin/goveralls -v -service=travis-ci
+ - go test -v -covermode=count -coverprofile=coverage.out
+ - $GOPATH/bin/goveralls -coverprofile=coverage.out -service=travis-ci -repotoken $COVERALLS_TOKEN
