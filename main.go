@@ -20,7 +20,6 @@ func main() {
 		log.Printf("Error loading .env file: %v", err)
 	}
 
-	// router := mux.NewRouter().StrictSlash(true)
 	router := httprouter.New()
 
 	if os.Getenv("APP_ENV") == "production" {

@@ -1,8 +1,8 @@
 DROP TABLE IF EXISTS classes;
 
 CREATE TABLE classes (
-name VARCHAR NOT NULL,
-class VARCHAR NOT NULL
+    name VARCHAR NOT NULL,
+    class VARCHAR NOT NULL
 );
 
 
