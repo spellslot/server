@@ -5,7 +5,6 @@ CREATE TABLE classes (
     class VARCHAR NOT NULL
 );
 
-
 INSERT INTO classes (name, class) VALUES ('True Strike', 'Bard');
 INSERT INTO classes (name, class) VALUES ('True Strike', 'Sorcerer');
 INSERT INTO classes (name, class) VALUES ('True Strike', 'Warlock');

@@ -23,7 +23,7 @@ The main entrypoint for the server is `main.go`.
 2. Set up the Postgres database and seed the table
     * `createuser <username>`
     * `createdb <database name> -U <username>`
-    * `psql -d <database name> -U <username> -f db/create_spells_table.sql`
+    * `sh db/init.sh <database name> <username>`
 3. Grab this code
     * `cd $GOHOME/src`
     * `go get github.com/spellslot/server`
