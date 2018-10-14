@@ -19,7 +19,7 @@ The main entrypoint for the server is `main.go`.
 
 ## Set up a development environment
 
-1. Install Go, Go Dep, and Postgres
+1. Install Go 1.11.x+, and Postgres
 2. Set up the Postgres database and seed the table
     * `createuser <username>`
     * `createdb <database name> -U <username>`
