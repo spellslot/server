@@ -27,9 +27,6 @@ The main entrypoint for the server is `main.go`.
 3. Grab this code
     * `cd $GOHOME/src`
     * `go get github.com/spellslot/server`
-4. Make sure you install all the dependencies
-    * `cd $GOHOME/src/github.com/spellslot/server`
-    * `dep ensure`
 4. Create a `.env` file in `$GOHOME/src/github.com/spellslot/server` and populate it like this:
 
 ```
