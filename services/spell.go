@@ -9,6 +9,7 @@ type (
 	// SpellService specifies the interface for the spell service needed by spellResource.
 	SpellService interface {
 		Get() (*models.Spells, error)
+		Create(spell *models.Spell) (*models.Spell, error)
 	}
 
 	// SpellServiceImpl provides services related with spells.
@@ -20,7 +21,12 @@ func NewSpellService(dao daos.SpellDAO) SpellService {
 	return &SpellServiceImpl{dao}
 }
 
-// Get for SpellService
+// Get for SpellServiceImpl
 func (s SpellServiceImpl) Get() (*models.Spells, error) {
 	return s.dao.Get()
+}
+
+// Create for SpellServiceImpl
+func (s SpellServiceImpl) Create(spell *models.Spell) (*models.Spell, error) {
+	return &models.Spell{}, nil // TODO
 }
