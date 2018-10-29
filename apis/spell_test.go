@@ -2,6 +2,7 @@ package apis_test
 
 import (
 	"net/http"
+	"strings"
 
 	"github.com/golang/mock/gomock"
 	. "github.com/onsi/ginkgo"
@@ -27,7 +28,7 @@ var _ = Describe("Spells APIs", func() {
 
 	Describe("Get", func() {
 		Context("Successful", func() {
-			It("Simple mock request should return an empty array", func() {
+			It("should return empty array when there are no spells in the store", func() {
 				mockSpellDao.EXPECT().Get().Return(&models.Spells{}, nil)
 				req, _ := http.NewRequest("GET", "/api/v1/spells", nil)
 				response := executeRequest(req, mockSpellDao)
@@ -39,8 +40,9 @@ var _ = Describe("Spells APIs", func() {
 
 	Describe("Post", func() {
 		Context("Successful", func() {
-			It("Not yet implemented", func() {
-				req, _ := http.NewRequest("POST", "/api/v1/spells", nil)
+			It("should succeed on a valid request", func() {
+				mockSpellDao.EXPECT().Create(gomock.Any()).Return(&models.Spell{}, nil)
+				req, _ := http.NewRequest("POST", "/api/v1/spells", strings.NewReader("{\"name\":\"something\"}"))
 				response := executeRequest(req, mockSpellDao)
 				Expect(response.Code).To(Equal(http.StatusOK))
 			})
@@ -50,7 +52,7 @@ var _ = Describe("Spells APIs", func() {
 	Describe("Put", func() {
 		Context("Successful", func() {
 			It("Not yet implemented", func() {
-				req, _ := http.NewRequest("PUT", "/api/v1/spells", nil)
+				req, _ := http.NewRequest("PUT", "/api/v1/spells/1", nil)
 				response := executeRequest(req, mockSpellDao)
 				Expect(response.Code).To(Equal(http.StatusOK))
 				Expect(response.Body.String()).To(Equal("Not yet implemented"))
@@ -61,7 +63,7 @@ var _ = Describe("Spells APIs", func() {
 	Describe("Delete", func() {
 		Context("Successful", func() {
 			It("Not yet implemented", func() {
-				req, _ := http.NewRequest("DELETE", "/api/v1/spells", nil)
+				req, _ := http.NewRequest("DELETE", "/api/v1/spells/1", nil)
 				response := executeRequest(req, mockSpellDao)
 				Expect(response.Code).To(Equal(http.StatusOK))
 				Expect(response.Body.String()).To(Equal("Not yet implemented"))

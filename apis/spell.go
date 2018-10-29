@@ -51,7 +51,7 @@ func (s *spellResource) post(w http.ResponseWriter, r *http.Request, _ httproute
 	}
 
 	var spell models.Spell
-	err = json.Unmarshal(body, &s)
+	err = json.Unmarshal(body, &spell)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
