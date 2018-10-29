@@ -4,6 +4,7 @@ import (
 	"context"
 	"net/http"
 
+	"github.com/julienschmidt/httprouter"
 	"github.com/sirupsen/logrus"
 )
 
@@ -15,16 +16,16 @@ const (
 )
 
 // Middleware is a factory for creating a middleware
-func Middleware(next http.Handler) http.Handler {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+func Middleware(next httprouter.Handle) httprouter.Handle {
+	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		logger := logrus.New()
 		logger.Formatter = &logrus.JSONFormatter{}
 		logger.Level = logrus.InfoLevel
 
 		ctx := context.WithValue(r.Context(), LoggerKey, logger)
 
-		next.ServeHTTP(w, r.WithContext(ctx))
+		next(w, r.WithContext(ctx), ps)
 
 		logger.Infof("Completed request\n")
-	})
+	}
 }

@@ -14,6 +14,7 @@ type (
 	// SpellDAO describes a spell dao
 	SpellDAO interface {
 		Get() (*models.Spells, error)
+		Create(spell *models.Spell) (*models.Spell, error)
 	}
 
 	// DBSpellDAO persists spell data in database
@@ -55,4 +56,9 @@ func (dao *DBSpellDAO) Get() (*models.Spells, error) {
 	}
 
 	return &spells, nil
+}
+
+// Create for DBSpellDAO
+func (dao *DBSpellDAO) Create(spell *models.Spell) (*models.Spell, error) {
+	return &models.Spell{}, nil // TODO
 }

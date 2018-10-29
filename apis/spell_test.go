@@ -43,7 +43,6 @@ var _ = Describe("Spells APIs", func() {
 				req, _ := http.NewRequest("POST", "/api/v1/spells", nil)
 				response := executeRequest(req, mockSpellDao)
 				Expect(response.Code).To(Equal(http.StatusOK))
-				Expect(response.Body.String()).To(Equal("Not yet implemented"))
 			})
 		})
 	})

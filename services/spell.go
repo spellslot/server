@@ -28,5 +28,5 @@ func (s SpellServiceImpl) Get() (*models.Spells, error) {
 
 // Create for SpellServiceImpl
 func (s SpellServiceImpl) Create(spell *models.Spell) (*models.Spell, error) {
-	return &models.Spell{}, nil // TODO
+	return s.dao.Create(spell)
 }
